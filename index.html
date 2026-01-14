@@ -3,9 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tuntun-petshop</title>
+    <title>TunTun Pet Shop | Your Pet's Happy Place</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff7675;
+            --secondary-color: #fab1a0;
+            --accent-color: #fdcb6e;
+            --text-color: #2d3436;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-cta {
+            background: var(--primary-color);
+            color: var(--white) !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .btn-cta:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(255, 118, 117, 0.1), rgba(253, 203, 110, 0.1)), 
+                        url('https://placehold.co/1920x1080/ff7675/white?text=Happy+Pets+at+TunTun') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #636e72;
+        }
+
+        /* Services Section */
+        .section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #636e72;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--light-bg);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 5px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .service-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Featured Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-image {
+            height: 250px;
+            background: #eee;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Banner Section */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            padding: 5rem 10%;
+            text-align: center;
+            color: var(--white);
+            border-radius: 30px;
+            margin: 5rem 10%;
+        }
+
+        .cta-banner h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-color);
+            color: var(--white);
+            padding: 5rem 10% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section {
+                padding: 3rem 5%;
+            }
+            .cta-banner {
+                margin: 3rem 5%;
+                padding: 3rem 2rem;
+            }
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Blank white page -->
+
+    <nav>
+        <a href="#" class="logo">🐾 Tun<span>Tun</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" class="btn-cta">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Paws, Whiskers & <br>Pure Happiness</h1>
+            <p>At TunTun Pet Shop, we provide everything your furry friends need to live their best life. From premium nutrition to expert grooming.</p>
+            <a href="#products" class="btn-cta" style="font-size: 1.2rem; padding: 1rem 2.5rem;">Shop Now</a>
+        </div>
+    </header>
+
+    <section id="services" class="section">
+        <div class="section-title">
+            <h2>Our Premium Services</h2>
+            <p>We care for your pets as if they were our own. Professional care tailored to every breed and personality.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://placehold.co/100/ff7675/white?text=✂️" alt="Grooming">
+                <h3>Expert Grooming</h3>
+                <p>Keep your pet looking and smelling great with our full-service spa treatments.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://placehold.co/100/fab1a0/white?text=🏥" alt="Vet">
+                <h3>Health Checkups</h3>
+                <p>Consultations with top-rated veterinarians to ensure your pet's long-term health.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://placehold.co/100/fdcb6e/white?text=🏨" alt="Boarding">
+                <h3>Pet Boarding</h3>
+                <p>A safe, comfortable, and fun place for your pets to stay while you're away.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section" style="background-color: var(--light-bg);">
+        <div class="section-title">
+            <h2>Featured Products</h2>
+            <p>Only the best brands and highest quality accessories for your companions.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://placehold.co/400x400/ff7675/white?text=Dog+Food" alt="Premium Dog Food">
+                </div>
+                <div class="product-info">
+                    <h3>Premium Grain-Free Mix</h3>
+                    <p class="price">$45.00</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://placehold.co/400x400/fab1a0/white?text=Cat+Tree" alt="Cat Tree">
+                </div>
+                <div class="product-info">
+                    <h3>Deluxe Adventure Cat Tree</h3>
+                    <p class="price">$89.00</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://placehold.co/400x400/fdcb6e/white?text=Toy" alt="Chew Toy">
+                </div>
+                <div class="product-info">
+                    <h3>Indestructible Chew Toy</h3>
+                    <p class="price">$15.00</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://placehold.co/400x400/6c5ce7/white?text=Collar" alt="Collar">
+                </div>
+                <div class="product-info">
+                    <h3>Leather Comfort Collar</h3>
+                    <p class="price">$25.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2>Join the TunTun Family</h2>
+        <p style="margin-bottom: 2rem; font-size: 1.2rem;">Get 10% off your first visit when you sign up for our newsletter!</p>
+        <a href="#" class="btn-white">Sign Up Today</a>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 1.5rem; color: var(--white);">🐾 Tun<span>Tun</span></a>
+                <p style="color: #bdc3c7;">Your neighborhood pet experts since 2010. Dedicated to the well-being of every animal.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul style="color: #bdc3c7;">
+                    <li>📍 123 Pet Lane, Paws City</li>
+                    <li>📞 (555) 123-4567</li>
+                    <li>📧 hello@tuntunpet.com</li>
+                    <li>⏰ Mon-Sat: 9am - 8pm</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" style="color: var(--white); font-size: 1.5rem;">FB</a>
+                    <a href="#" style="color: var(--white); font-size: 1.5rem;">IG</a>
+                    <a href="#" style="color: var(--white); font-size: 1.5rem;">TW</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TunTun Pet Shop. All rights reserved. Made with ❤️ for animals.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
